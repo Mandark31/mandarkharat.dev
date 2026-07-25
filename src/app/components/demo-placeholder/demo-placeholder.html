@@ -1,0 +1,33 @@
+<div class="demo">
+  <div class="demo__head">
+    <span class="demo__dot"></span>
+    <span class="demo__title mono">DocsRAG · /ask</span>
+    <span class="demo__badge">live demo soon</span>
+  </div>
+
+  <div class="demo__body">
+    @if (!asked()) {
+      <p class="demo__hint text-muted">Ask a question about the FastAPI docs corpus:</p>
+    } @else {
+      <div class="demo__answer">
+        <p>{{ typed() }}<span class="demo__caret" [class.on]="streaming()"></span></p>
+        @if (sources().length) {
+          <div class="demo__sources">
+            <span class="demo__sources-label mono">Sources</span>
+            <ol>
+              @for (s of sources(); track s) {
+                <li class="mono">{{ s }}</li>
+              }
+            </ol>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="demo__presets">
+    @for (q of presets; track q) {
+      <button class="demo__preset" (click)="run(q)" [disabled]="streaming()">{{ q }}</button>
+    }
+  </div>
+</div>

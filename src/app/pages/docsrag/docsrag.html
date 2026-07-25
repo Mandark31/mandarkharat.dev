@@ -1,0 +1,106 @@
+<article class="cs">
+  <!-- Header -->
+  <header class="cs__header section">
+    <div class="container cs__header-inner">
+      <a routerLink="/" class="cs__back mono">← back</a>
+      <p class="eyebrow">Case study</p>
+      <h1>DocsRAG</h1>
+      <p class="cs__lede text-muted">
+        A production-minded retrieval-augmented-generation service: grounded, inline-cited answers
+        over a documentation corpus. Built phase by phase with a defend-every-decision mindset —
+        not a notebook demo.
+      </p>
+      <div class="cs__meta">
+        <span class="chip">Python 3.12</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">Qdrant</span>
+        <span class="chip">fastembed</span>
+        <span class="chip">Groq LLM</span>
+        <span class="chip">Docker</span>
+        <a class="btn btn-ghost cs__repo" [href]="repo" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problem -->
+  <section class="container cs__block">
+    <h2>The problem</h2>
+    <p class="text-muted">
+      LLMs answer confidently even when they’re wrong. For questions over a specific body of docs,
+      that’s unacceptable — you need answers that are <strong>grounded</strong> in the source and
+      <strong>traceable</strong> back to it. DocsRAG retrieves the relevant chunks first, then makes
+      the model answer only from them, citing each claim. When the corpus doesn’t contain the
+      answer, it declines rather than hallucinates.
+    </p>
+  </section>
+
+  <!-- Pipeline -->
+  <section class="container cs__block">
+    <h2>How it works</h2>
+    <div class="pipeline">
+      @for (p of pipeline; track p.step; let i = $index) {
+        <div class="pipeline__step">
+          <div class="pipeline__num mono">{{ i + 1 }}</div>
+          <div>
+            <div class="pipeline__name">{{ p.step }}</div>
+            <div class="text-muted pipeline__detail">{{ p.detail }}</div>
+          </div>
+        </div>
+      }
+    </div>
+    <p class="text-muted cs__note">
+      The same embedding model runs on both sides — a hard requirement, since matching vector
+      <em>dimensions</em> does not mean matching vector <em>spaces</em>.
+    </p>
+  </section>
+
+  <!-- Design decisions -->
+  <section class="container cs__block">
+    <h2>Decisions worth defending</h2>
+    <div class="decisions">
+      @for (d of decisions; track d.topic) {
+        <div class="decision card">
+          <div class="decision__top">
+            <span class="decision__topic">{{ d.topic }}</span>
+            <span class="decision__choice mono">{{ d.choice }}</span>
+          </div>
+          <p class="text-muted decision__why">{{ d.why }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Results / roadmap -->
+  <section class="container cs__block">
+    <h2>Results &amp; roadmap</h2>
+    <p class="text-muted cs__note">
+      Eval-driven: each production improvement lands on its own branch with a before/after accuracy
+      number, so deltas stay apples-to-apples.
+    </p>
+    <div class="roadmap">
+      @for (r of roadmap; track r.phase) {
+        <div class="roadmap__row" [class.done]="r.done">
+          <span class="roadmap__marker">{{ r.done ? '✓' : '' }}</span>
+          <div>
+            <span class="roadmap__phase mono">{{ r.phase }}</span>
+            <span class="text-muted roadmap__label">{{ r.label }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container cs__block cs__cta">
+    <div class="card cs__cta-card">
+      <div>
+        <h3>Want the full write-up?</h3>
+        <p class="text-muted">The repo README documents every phase and design trade-off in detail.</p>
+      </div>
+      <div class="cs__cta-actions">
+        <a class="btn btn-primary" [href]="repo" target="_blank" rel="noopener">Read on GitHub</a>
+        <a class="btn btn-ghost" routerLink="/">Back to home</a>
+      </div>
+    </div>
+  </section>
+</article>

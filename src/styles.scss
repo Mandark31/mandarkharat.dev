@@ -1,0 +1,134 @@
+/* ============================================================
+   DocsRAG portfolio — global design system
+   Dark-first, light-aware, self-contained (no external fonts).
+   ============================================================ */
+
+:root {
+  /* Palette — dark (default) */
+  --bg: #0a0b0f;
+  --bg-elevated: #12141b;
+  --surface: #161922;
+  --surface-2: #1c2029;
+  --border: #262b37;
+  --border-strong: #333a49;
+
+  --text: #e8eaf0;
+  --text-muted: #9aa2b4;
+  --text-faint: #6a7182;
+
+  --accent: #7c8cff;      /* indigo — primary */
+  --accent-2: #35d6c4;    /* teal — secondary */
+  --accent-soft: rgba(124, 140, 255, 0.12);
+  --accent-ring: rgba(124, 140, 255, 0.35);
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --maxw: 1080px;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo,
+    Consolas, monospace;
+
+  --shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.6);
+  --shadow-soft: 0 2px 20px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* Light palette — applied for system preference (only when the user hasn't
+   made an explicit choice) and for an explicit [data-theme="light"]. */
+@mixin light-theme {
+  --bg: #fbfbfd;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f3f4f8;
+  --border: #e6e8ef;
+  --border-strong: #d5d8e2;
+
+  --text: #14161d;
+  --text-muted: #545b6b;
+  --text-faint: #878e9e;
+
+  --accent: #4f5bd5;
+  --accent-2: #0f9e8e;
+  --accent-soft: rgba(79, 91, 213, 0.09);
+  --accent-ring: rgba(79, 91, 213, 0.3);
+
+  --shadow: 0 12px 40px -16px rgba(20, 22, 29, 0.18);
+  --shadow-soft: 0 2px 18px -10px rgba(20, 22, 29, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) { @include light-theme; }
+}
+
+:root[data-theme='light'] { @include light-theme; }
+
+/* Smooth transition when toggling themes */
+body,
+.nav,
+.card,
+.demo,
+.pipeline__step { transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease; }
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 { line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+
+/* Layout helpers */
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.section { padding: clamp(64px, 9vw, 112px) 0; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.text-muted { color: var(--text-muted); }
+.mono { font-family: var(--font-mono); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: var(--radius-sm);
+  font-weight: 600; font-size: 0.95rem; cursor: pointer;
+  border: 1px solid transparent; transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); }
+.btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Focus visibility for accessibility */
+:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 3px; border-radius: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

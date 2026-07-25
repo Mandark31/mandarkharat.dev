@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__left">
+      <div class="footer__brand">Mandar Kharat</div>
+      <p class="text-muted footer__tag">Fullstack &amp; AI engineer · {{ profile.location }}</p>
+    </div>
+    <div class="footer__links">
+      @for (s of socials; track s.label) {
+        <a [href]="s.href" target="_blank" rel="noopener">{{ s.label }}</a>
+      }
+    </div>
+  </div>
+  <div class="container footer__meta">
+    <span class="text-muted">© {{ year }} Mandar Kharat</span>
+    <span class="text-muted mono">Built with Angular · mandarkharat.dev</span>
+  </div>
+</footer>

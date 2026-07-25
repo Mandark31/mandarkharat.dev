@@ -1,0 +1,142 @@
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero__inner">
+    <p class="eyebrow">Fullstack · AI Systems</p>
+    <h1 class="hero__title">{{ profile.headline }}</h1>
+    <p class="hero__sub text-muted">{{ profile.subline }}</p>
+    <div class="hero__actions">
+      <a class="btn btn-primary" href="/#work">See the work</a>
+      <a class="btn btn-ghost" [href]="socials[0].href" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="hero__glow" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============ PROOF STRIP ============ -->
+<section class="proof">
+  <div class="container proof__grid">
+    @for (stat of proofStats; track stat.label) {
+      <div class="proof__item">
+        <div class="proof__value mono">{{ stat.value }}</div>
+        <div class="proof__label text-muted">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ============ FEATURED: DOCSRAG ============ -->
+<section id="work" class="section">
+  <div class="container">
+    <p class="eyebrow">Featured project</p>
+    <div class="featured card">
+      <div class="featured__body">
+        <h2>{{ featured.name }}</h2>
+        <p class="featured__tagline">{{ featured.tagline }}</p>
+        <p class="text-muted featured__blurb">{{ featured.blurb }}</p>
+        <ul class="chips">
+          @for (t of featured.stack; track t) {
+            <li class="chip">{{ t }}</li>
+          }
+        </ul>
+        <div class="featured__actions">
+          <a class="btn btn-primary" routerLink="/docsrag">Read the case study</a>
+          <a class="btn btn-ghost" [href]="featured.links[1].href" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="featured__demo">
+        <app-demo-placeholder />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OTHER WORK ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <p class="eyebrow">More work</p>
+    <div class="work-grid">
+      @for (p of otherProjects; track p.name) {
+        <article class="card work-card">
+          <h3>{{ p.name }}</h3>
+          <p class="work-card__tag">{{ p.tagline }}</p>
+          <p class="text-muted">{{ p.blurb }}</p>
+          <ul class="chips">
+            @for (t of p.stack; track t) {
+              <li class="chip">{{ t }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="section">
+  <div class="container">
+    <p class="eyebrow">Experience</p>
+    <h2 class="section__h">Six years shipping production software</h2>
+    <div class="timeline">
+      @for (role of experience; track role.period) {
+        <div class="timeline__item">
+          <div class="timeline__meta">
+            <div class="timeline__role">{{ role.title }}</div>
+            <div class="text-muted timeline__co">{{ role.company }} · {{ role.period }}</div>
+          </div>
+          <ul class="timeline__points">
+            @for (h of role.highlights; track h) {
+              <li>{{ h }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section section--tight">
+  <div class="container about">
+    <div class="about__text">
+      <p class="eyebrow">About</p>
+      <h2 class="section__h">A production engineer who went deep on AI</h2>
+      <p class="text-muted">
+        I spent six years at Fastenal building and scaling Angular + .NET systems — identity
+        migrations, Kafka CDC pipelines, observability, zero-downtime deploys. Then I got deep into
+        LLM systems and started building them the same way I build production software: measurable,
+        containerized, eval-gated, and secure. DocsRAG is where that shows.
+      </p>
+      <p class="text-muted">
+        I'm open to senior fullstack and AI engineering roles where that combination matters.
+      </p>
+    </div>
+    <div class="about__side">
+      <h4 class="about__side-h">Education &amp; certs</h4>
+      @for (e of education; track e.title) {
+        <div class="about__edu">
+          <div class="about__edu-title">{{ e.title }}</div>
+          <div class="text-muted">{{ e.org }} · {{ e.period }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section">
+  <div class="container contact card">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 class="section__h">Let's talk</h2>
+      <p class="text-muted">Open to senior fullstack &amp; AI engineering roles. Reach me directly.</p>
+    </div>
+    <div class="contact__links">
+      @for (s of socials; track s.label) {
+        <a class="contact__link" [href]="s.href" target="_blank" rel="noopener">
+          <span class="contact__link-label">{{ s.label }}</span>
+          <span class="text-muted mono">{{ s.handle }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
