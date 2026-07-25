@@ -30,6 +30,8 @@
               }
             ],
             "styles": [
+              "@fontsource-variable/inter/wght.css",
+              "@fontsource-variable/jetbrains-mono/wght.css",
               "src/styles.scss"
             ]
           },
