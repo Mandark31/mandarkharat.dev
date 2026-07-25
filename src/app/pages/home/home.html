@@ -6,7 +6,7 @@
     <p class="hero__sub text-muted">{{ profile.subline }}</p>
     <div class="hero__actions">
       <a class="btn btn-primary" href="/#work">See the work</a>
-      <a class="btn btn-ghost" [href]="socials[0].href" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" [href]="socials[0].href" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
     <div class="hero__glow" aria-hidden="true"></div>
   </div>
@@ -40,7 +40,7 @@
         </ul>
         <div class="featured__actions">
           <a class="btn btn-primary" routerLink="/docsrag">Read the case study</a>
-          <a class="btn btn-ghost" [href]="featured.links[1].href" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" [href]="featured.links[1].href" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
       <div class="featured__demo">
@@ -132,7 +132,7 @@
     </div>
     <div class="contact__links">
       @for (s of socials; track s.label) {
-        <a class="contact__link" [href]="s.href" target="_blank" rel="noopener">
+        <a class="contact__link" [href]="s.href" target="_blank" rel="noopener noreferrer">
           <span class="contact__link-label">{{ s.label }}</span>
           <span class="text-muted mono">{{ s.handle }}</span>
         </a>
