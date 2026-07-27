@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c8cff"/>
+      <stop offset="1" stop-color="#35d6c4"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c8cff"/>
+      <stop offset="1" stop-color="#35d6c4"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#7c8cff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#7c8cff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#35d6c4" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#35d6c4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background + ambient glows -->
+  <rect width="1200" height="630" fill="#0a0b0f"/>
+  <ellipse cx="1030" cy="90" rx="560" ry="440" fill="url(#glowA)"/>
+  <ellipse cx="170" cy="650" rx="480" ry="380" fill="url(#glowB)"/>
+  <!-- top accent bar -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#line)"/>
+
+  <!-- MK monogram mark -->
+  <rect x="90" y="82" width="76" height="76" rx="17" fill="url(#tile)"/>
+  <text x="128" y="122" text-anchor="middle" dominant-baseline="central"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-2" fill="#ffffff">MK</text>
+
+  <!-- eyebrow -->
+  <text x="92" y="252"
+        font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+        font-size="23" font-weight="600" letter-spacing="5" fill="#7c8cff">FULLSTACK · AI SYSTEMS</text>
+
+  <!-- name -->
+  <text x="88" y="348"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="94" font-weight="800" letter-spacing="-3" fill="#e8eaf0">Mandar Kharat</text>
+
+  <!-- tagline -->
+  <text x="92" y="416"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="33" font-weight="400" fill="#9aa2b4">Senior fullstack engineer building</text>
+  <text x="92" y="460"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="33" font-weight="400" fill="#9aa2b4">production-grade AI systems.</text>
+
+  <!-- skill chips (right) -->
+  <g font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="23" font-weight="500">
+    <rect x="884" y="188" width="226" height="56" rx="12" fill="#1c2230" stroke="#4a5468" stroke-width="1.5"/>
+    <text x="997" y="216" text-anchor="middle" dominant-baseline="central" fill="#c8cede">Angular</text>
+    <rect x="884" y="266" width="226" height="56" rx="12" fill="#1c2230" stroke="#4a5468" stroke-width="1.5"/>
+    <text x="997" y="294" text-anchor="middle" dominant-baseline="central" fill="#c8cede">.NET · C#</text>
+    <rect x="884" y="344" width="226" height="56" rx="12" fill="#1c2230" stroke="#4a5468" stroke-width="1.5"/>
+    <text x="997" y="372" text-anchor="middle" dominant-baseline="central" fill="#c8cede">RAG · LLMs</text>
+    <rect x="884" y="422" width="226" height="56" rx="12" fill="#1c2230" stroke="#4a5468" stroke-width="1.5"/>
+    <text x="997" y="450" text-anchor="middle" dominant-baseline="central" fill="#c8cede">Azure · Docker</text>
+  </g>
+
+  <!-- divider + domain -->
+  <rect x="92" y="516" width="120" height="5" rx="2.5" fill="url(#line)"/>
+  <text x="92" y="568"
+        font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+        font-size="25" font-weight="500" fill="#35d6c4">mandarkharat.dev</text>
+</svg>
