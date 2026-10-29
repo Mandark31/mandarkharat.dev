@@ -1,8 +1,8 @@
 <div class="demo">
   <div class="demo__head">
-    <span class="demo__dot"></span>
-    <span class="demo__title mono">DocsRAG · /ask</span>
-    <span class="demo__badge">live demo soon</span>
+    <span class="demo__method mono">POST</span>
+    <span class="demo__title mono">/ask</span>
+    <span class="demo__badge label">Recorded · live soon</span>
   </div>
 
   <div class="demo__body">
@@ -13,7 +13,7 @@
         <p>{{ typed() }}<span class="demo__caret" [class.on]="streaming()"></span></p>
         @if (sources().length) {
           <div class="demo__sources">
-            <span class="demo__sources-label mono">Sources</span>
+            <span class="label">Sources</span>
             <ol>
               @for (s of sources(); track s) {
                 <li class="mono">{{ s }}</li>

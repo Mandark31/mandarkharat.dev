@@ -35,9 +35,9 @@ export class ThemeService {
     } catch {
       /* ignore */
     }
-    const prefersLight =
+    const prefersDark =
       typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-color-scheme: light)').matches;
-    return prefersLight ? 'light' : 'dark';
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
   }
 }

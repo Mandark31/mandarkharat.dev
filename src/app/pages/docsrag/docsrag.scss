@@ -1,106 +1,67 @@
-.cs__header {
-  padding-bottom: 20px;
+.cs__head {
+  padding: clamp(36px, 6vw, 64px) 0 clamp(32px, 5vw, 48px);
   border-bottom: 1px solid var(--border);
 }
-.cs__header-inner { max-width: 760px; }
 .cs__back {
   display: inline-block;
   color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-bottom: 26px;
+  font-size: 0.8rem;
+  margin-bottom: 28px;
   transition: color 0.18s ease;
 }
 .cs__back:hover { color: var(--accent); }
-.cs__header h1 { margin-bottom: 18px; }
-.cs__lede { font-size: 1.1rem; margin-bottom: 26px; }
-.cs__meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.cs__repo { margin-left: 6px; }
-
-.cs__block { padding: clamp(40px, 6vw, 64px) 24px; max-width: calc(760px + 48px); }
-.cs__block h2 { margin-bottom: 20px; }
-.cs__block p { font-size: 1.02rem; }
-.cs__note { font-size: 0.94rem !important; margin-top: 18px; }
-
-/* Pipeline */
-.pipeline { display: grid; gap: 12px; }
-.pipeline__step {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-}
-.pipeline__num {
+.cs__meta {
   display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 30px; height: 30px;
-  border-radius: 8px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 700;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px 24px;
+  margin: 0 0 clamp(26px, 4vw, 40px);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
-.pipeline__name { font-weight: 600; margin-bottom: 2px; }
-.pipeline__detail { font-size: 0.9rem; }
+.cs__meta dt { color: var(--text-muted); }
+.cs__meta dd { margin: 0; }
+.cs__head h1 { margin-bottom: 18px; }
+.cs__lede {
+  font-family: var(--font-serif);
+  font-size: clamp(1.08rem, 2vw, 1.22rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 58ch;
+}
 
-/* Decisions */
-.decisions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.decision { padding: 22px; }
-.decision__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 10px;
+/* Pipeline: a real sequence, so an ordered list */
+.pipeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  display: grid;
 }
-.decision__topic { font-weight: 600; font-size: 0.98rem; }
-.decision__choice {
-  font-size: 0.76rem;
-  color: var(--accent-2);
-  white-space: nowrap;
+.pipeline__step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr);
+  column-gap: 8px;
+  padding: 13px 0;
+  border-top: 1px solid var(--border);
 }
-.decision__why { font-size: 0.9rem !important; }
-@media (max-width: 720px) { .decisions { grid-template-columns: 1fr; } }
+.pipeline__step:first-child { border-top: 0; padding-top: 0; }
+.pipeline__step::before {
+  content: counter(step) '.';
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.pipeline__name { font-weight: 600; }
+.pipeline__detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
 
 /* Roadmap */
-.roadmap { display: grid; gap: 4px; margin-top: 24px; }
-.roadmap__row {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 16px 0;
-  border-top: 1px solid var(--border);
-  opacity: 0.72;
-}
-.roadmap__row.done { opacity: 1; }
-.roadmap__marker {
-  flex-shrink: 0;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 0.72rem;
-  border: 1px solid var(--border-strong);
-  color: var(--accent-2);
-}
-.roadmap__row.done .roadmap__marker {
-  background: var(--accent-soft);
-  border-color: transparent;
-}
-.roadmap__phase { font-size: 0.8rem; color: var(--accent); margin-right: 10px; }
-.roadmap__label { font-size: 0.94rem; }
+.roadmap { margin-top: 22px; }
+.roadmap__todo td { color: var(--text-muted); }
+.roadmap__status { color: var(--accent) !important; }
+.roadmap__todo .roadmap__status { color: var(--text-faint) !important; }
 
-/* CTA */
-.cs__cta-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding: 32px;
-}
-.cs__cta-card h3 { margin-bottom: 6px; }
-.cs__cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.cs__links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 26px; }

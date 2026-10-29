@@ -8,6 +8,7 @@ import {
   projects,
   experience,
   education,
+  docsragDecisions,
 } from '../../core/content';
 
 @Component({
@@ -25,4 +26,5 @@ export class Home {
 
   protected readonly featured = projects.find((p) => p.featured)!;
   protected readonly otherProjects = projects.filter((p) => !p.featured);
+  protected readonly decisions = docsragDecisions.filter((d) => d.highlight);
 }

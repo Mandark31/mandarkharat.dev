@@ -1,105 +1,122 @@
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="container hero__inner">
-    <p class="eyebrow">Fullstack · AI Systems</p>
-    <h1 class="hero__title">{{ profile.headline }}</h1>
-    <p class="hero__sub text-muted">{{ profile.subline }}</p>
-    <div class="hero__actions">
-      <a class="btn btn-primary" href="/#work">See the work</a>
-      <a class="btn btn-ghost" [href]="socials[0].href" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </div>
-    <div class="hero__glow" aria-hidden="true"></div>
-  </div>
-</section>
-
-<!-- ============ PROOF STRIP ============ -->
-<section class="proof">
-  <div class="container proof__grid">
-    @for (stat of proofStats; track stat.label) {
-      <div class="proof__item">
-        <div class="proof__value mono">{{ stat.value }}</div>
-        <div class="proof__label text-muted">{{ stat.label }}</div>
-      </div>
-    }
-  </div>
-</section>
-
-<!-- ============ FEATURED: DOCSRAG ============ -->
-<section id="work" class="section">
+<!-- ============ DOC HEADER ============ -->
+<header class="head">
   <div class="container">
-    <p class="eyebrow">Featured project</p>
-    <div class="featured card">
-      <div class="featured__body">
-        <h2>{{ featured.name }}</h2>
-        <p class="featured__tagline">{{ featured.tagline }}</p>
-        <p class="text-muted featured__blurb">{{ featured.blurb }}</p>
-        <ul class="chips">
-          @for (t of featured.stack; track t) {
-            <li class="chip">{{ t }}</li>
+    <dl class="head__meta">
+      <div><dt>Author</dt><dd>{{ profile.name }}</dd></div>
+      <div><dt>Role</dt><dd>{{ profile.role }}</dd></div>
+      <div><dt>Based in</dt><dd>{{ profile.location }}</dd></div>
+      <div><dt>Status</dt><dd>{{ profile.status }}</dd></div>
+    </dl>
+    <h1 class="head__title">{{ profile.headlineLead }} <em>{{ profile.headlineEmphasis }}</em></h1>
+    <p class="head__lede">{{ profile.subline }}</p>
+    <div class="head__links">
+      <a class="link" href="/#work">See the work ↓</a>
+      <a class="link" [href]="socials[0].href" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- ============ §1 FEATURED: DOCSRAG ============ -->
+  <section id="work" class="doc-sec">
+    <div class="doc-sec__num">§1<span>{{ featured.name }}</span></div>
+    <div class="doc-sec__body">
+      <h2>{{ featured.tagline }}</h2>
+      <p>{{ featured.blurb }}</p>
+
+      <div class="table-wrap excerpt">
+        <table class="ruled ruled--stack">
+          <thead>
+            <tr><th class="label">Decision</th><th class="label">Chose</th><th class="label">Why</th></tr>
+          </thead>
+          <tbody>
+            @for (d of decisions; track d.topic) {
+              <tr>
+                <td class="ruled__key">{{ d.topic }}</td>
+                <td class="ruled__mono">{{ d.choice }}</td>
+                <td>{{ d.why }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="fig">
+        <app-demo-placeholder />
+        <figcaption class="fig__cap">
+          <span class="mono">Fig. 1</span> Ask DocsRAG a question about the FastAPI docs. Answers stream in with their sources.
+        </figcaption>
+      </figure>
+
+      <div class="sec-links">
+        <a class="link" routerLink="/docsrag">Read the case study →</a>
+        <a class="link" [href]="featured.links[1].href" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+      </div>
+    </div>
+    <aside class="aside">
+      <span class="label">Stack</span>
+      <ul>
+        @for (t of featured.stack; track t) {
+          <li>{{ t }}</li>
+        }
+      </ul>
+    </aside>
+  </section>
+
+  <!-- ============ §2 OTHER WORK ============ -->
+  @for (p of otherProjects; track p.name; let i = $index) {
+    <section class="doc-sec">
+      <div class="doc-sec__num">§{{ i + 2 }}<span>{{ p.name }}</span></div>
+      <div class="doc-sec__body">
+        <h2>{{ p.tagline }}</h2>
+        <p>{{ p.blurb }}</p>
+      </div>
+      <aside class="aside">
+        <span class="label">Stack</span>
+        <ul>
+          @for (t of p.stack; track t) {
+            <li>{{ t }}</li>
           }
         </ul>
-        <div class="featured__actions">
-          <a class="btn btn-primary" routerLink="/docsrag">Read the case study</a>
-          <a class="btn btn-ghost" [href]="featured.links[1].href" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-      </div>
-      <div class="featured__demo">
-        <app-demo-placeholder />
-      </div>
-    </div>
-  </div>
-</section>
+      </aside>
+    </section>
+  }
 
-<!-- ============ OTHER WORK ============ -->
-<section class="section section--tight">
-  <div class="container">
-    <p class="eyebrow">More work</p>
-    <div class="work-grid">
-      @for (p of otherProjects; track p.name) {
-        <article class="card work-card">
-          <h3>{{ p.name }}</h3>
-          <p class="work-card__tag">{{ p.tagline }}</p>
-          <p class="text-muted">{{ p.blurb }}</p>
-          <ul class="chips">
-            @for (t of p.stack; track t) {
-              <li class="chip">{{ t }}</li>
-            }
-          </ul>
-        </article>
-      }
-    </div>
-  </div>
-</section>
-
-<!-- ============ EXPERIENCE ============ -->
-<section id="experience" class="section">
-  <div class="container">
-    <p class="eyebrow">Experience</p>
-    <h2 class="section__h">Six years shipping production software</h2>
-    <div class="timeline">
-      @for (role of experience; track role.period) {
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <div class="timeline__role">{{ role.title }}</div>
-            <div class="text-muted timeline__co">{{ role.company }} · {{ role.period }}</div>
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="doc-sec">
+    <div class="doc-sec__num">§{{ otherProjects.length + 2 }}<span>Experience</span></div>
+    <div class="doc-sec__body">
+      <h2>Six years shipping production software</h2>
+      <div class="roles">
+        @for (role of experience; track role.period) {
+          <div class="role">
+            <div class="role__when mono">{{ role.period }}</div>
+            <div class="role__what">
+              <div class="role__title">{{ role.title }}</div>
+              <div class="role__co text-muted">{{ role.company }}</div>
+              <ul class="role__points">
+                @for (h of role.highlights; track h) {
+                  <li>{{ h }}</li>
+                }
+              </ul>
+            </div>
           </div>
-          <ul class="timeline__points">
-            @for (h of role.highlights; track h) {
-              <li>{{ h }}</li>
-            }
-          </ul>
-        </div>
-      }
+        }
+      </div>
     </div>
-  </div>
-</section>
+    <aside class="aside">
+      <span class="label">In numbers</span>
+      @for (stat of proofStats; track stat.label) {
+        <div><span class="aside__value">{{ stat.value }}</span> {{ stat.label }}</div>
+      }
+    </aside>
+  </section>
 
-<!-- ============ ABOUT ============ -->
-<section id="about" class="section section--tight">
-  <div class="container about">
-    <div class="about__text">
-      <p class="eyebrow">About</p>
-      <h2 class="section__h">A production engineer who went deep on AI</h2>
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="doc-sec">
+    <div class="doc-sec__num">§{{ otherProjects.length + 3 }}<span>About</span></div>
+    <div class="doc-sec__body">
+      <h2>A production engineer who went deep on AI</h2>
       <p class="text-muted">
         I spent six years at Fastenal building and scaling Angular + .NET systems — identity
         migrations, Kafka CDC pipelines, observability, zero-downtime deploys. Then I got deep into
@@ -110,33 +127,35 @@
         I'm open to senior fullstack and AI engineering roles where that combination matters.
       </p>
     </div>
-    <div class="about__side">
-      <h4 class="about__side-h">Education &amp; certs</h4>
+    <aside class="aside">
+      <span class="label">Education &amp; certs</span>
       @for (e of education; track e.title) {
-        <div class="about__edu">
-          <div class="about__edu-title">{{ e.title }}</div>
-          <div class="text-muted">{{ e.org }} · {{ e.period }}</div>
+        <div>
+          <div class="aside__strong">{{ e.title }}</div>
+          <div>{{ e.org }} · {{ e.period }}</div>
         </div>
       }
-    </div>
-  </div>
-</section>
+    </aside>
+  </section>
 
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="section">
-  <div class="container contact card">
-    <div>
-      <p class="eyebrow">Contact</p>
-      <h2 class="section__h">Let's talk</h2>
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="doc-sec doc-sec--last">
+    <div class="doc-sec__num">§{{ otherProjects.length + 4 }}<span>Contact</span></div>
+    <div class="doc-sec__body">
+      <h2>Let's talk</h2>
       <p class="text-muted">Open to senior fullstack &amp; AI engineering roles. Reach me directly.</p>
+      <div class="table-wrap contact">
+        <table class="ruled">
+          <tbody>
+            @for (s of socials; track s.label) {
+              <tr>
+                <td class="ruled__key">{{ s.label }}</td>
+                <td><a class="link" [href]="s.href" target="_blank" rel="noopener noreferrer">{{ s.handle }}</a></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="contact__links">
-      @for (s of socials; track s.label) {
-        <a class="contact__link" [href]="s.href" target="_blank" rel="noopener noreferrer">
-          <span class="contact__link-label">{{ s.label }}</span>
-          <span class="text-muted mono">{{ s.handle }}</span>
-        </a>
-      }
-    </div>
-  </div>
-</section>
+  </section>
+</div>
