@@ -1,106 +1,128 @@
 <article class="cs">
   <!-- Header -->
-  <header class="cs__header section">
-    <div class="container cs__header-inner">
-      <a routerLink="/" class="cs__back mono">← back</a>
-      <p class="eyebrow">Case study</p>
+  <header class="cs__head">
+    <div class="container">
+      <a routerLink="/" class="cs__back mono">← mandarkharat.dev</a>
+      <dl class="cs__meta">
+        <div><dt>Document</dt><dd>Case study</dd></div>
+        <div><dt>Project</dt><dd>DocsRAG</dd></div>
+        <div><dt>Status</dt><dd>Baseline shipped · Phase A next</dd></div>
+        <div><dt>Source</dt><dd><a class="link" [href]="repo" target="_blank" rel="noopener noreferrer">Mandark31/DocsRAG</a></dd></div>
+      </dl>
       <h1>DocsRAG</h1>
-      <p class="cs__lede text-muted">
+      <p class="cs__lede">
         A production-minded retrieval-augmented-generation service: grounded, inline-cited answers
         over a documentation corpus. Built phase by phase with a defend-every-decision mindset —
         not a notebook demo.
       </p>
-      <div class="cs__meta">
-        <span class="chip">Python 3.12</span>
-        <span class="chip">FastAPI</span>
-        <span class="chip">Qdrant</span>
-        <span class="chip">fastembed</span>
-        <span class="chip">Groq LLM</span>
-        <span class="chip">Docker</span>
-        <a class="btn btn-ghost cs__repo" [href]="repo" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-      </div>
     </div>
   </header>
 
-  <!-- Problem -->
-  <section class="container cs__block">
-    <h2>The problem</h2>
-    <p class="text-muted">
-      LLMs answer confidently even when they’re wrong. For questions over a specific body of docs,
-      that’s unacceptable — you need answers that are <strong>grounded</strong> in the source and
-      <strong>traceable</strong> back to it. DocsRAG retrieves the relevant chunks first, then makes
-      the model answer only from them, citing each claim. When the corpus doesn’t contain the
-      answer, it declines rather than hallucinates.
-    </p>
-  </section>
-
-  <!-- Pipeline -->
-  <section class="container cs__block">
-    <h2>How it works</h2>
-    <div class="pipeline">
-      @for (p of pipeline; track p.step; let i = $index) {
-        <div class="pipeline__step">
-          <div class="pipeline__num mono">{{ i + 1 }}</div>
-          <div>
-            <div class="pipeline__name">{{ p.step }}</div>
-            <div class="text-muted pipeline__detail">{{ p.detail }}</div>
-          </div>
-        </div>
-      }
-    </div>
-    <p class="text-muted cs__note">
-      The same embedding model runs on both sides — a hard requirement, since matching vector
-      <em>dimensions</em> does not mean matching vector <em>spaces</em>.
-    </p>
-  </section>
-
-  <!-- Design decisions -->
-  <section class="container cs__block">
-    <h2>Decisions worth defending</h2>
-    <div class="decisions">
-      @for (d of decisions; track d.topic) {
-        <div class="decision card">
-          <div class="decision__top">
-            <span class="decision__topic">{{ d.topic }}</span>
-            <span class="decision__choice mono">{{ d.choice }}</span>
-          </div>
-          <p class="text-muted decision__why">{{ d.why }}</p>
-        </div>
-      }
-    </div>
-  </section>
-
-  <!-- Results / roadmap -->
-  <section class="container cs__block">
-    <h2>Results &amp; roadmap</h2>
-    <p class="text-muted cs__note">
-      Eval-driven: each production improvement lands on its own branch with a before/after accuracy
-      number, so deltas stay apples-to-apples.
-    </p>
-    <div class="roadmap">
-      @for (r of roadmap; track r.phase) {
-        <div class="roadmap__row" [class.done]="r.done">
-          <span class="roadmap__marker">{{ r.done ? '✓' : '' }}</span>
-          <div>
-            <span class="roadmap__phase mono">{{ r.phase }}</span>
-            <span class="text-muted roadmap__label">{{ r.label }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="container cs__block cs__cta">
-    <div class="card cs__cta-card">
-      <div>
-        <h3>Want the full write-up?</h3>
-        <p class="text-muted">The repo README documents every phase and design trade-off in detail.</p>
+  <div class="container">
+    <!-- §1 Problem -->
+    <section class="doc-sec">
+      <div class="doc-sec__num">§1<span>Problem</span></div>
+      <div class="doc-sec__body">
+        <h2>Confident answers aren't the same as correct ones</h2>
+        <p class="text-muted">
+          LLMs answer confidently even when they’re wrong. For questions over a specific body of docs,
+          that’s unacceptable — you need answers that are <strong>grounded</strong> in the source and
+          <strong>traceable</strong> back to it. DocsRAG retrieves the relevant chunks first, then makes
+          the model answer only from them, citing each claim. When the corpus doesn’t contain the
+          answer, it declines rather than hallucinates.
+        </p>
       </div>
-      <div class="cs__cta-actions">
-        <a class="btn btn-primary" [href]="repo" target="_blank" rel="noopener noreferrer">Read on GitHub</a>
-        <a class="btn btn-ghost" routerLink="/">Back to home</a>
+      <aside class="aside">
+        <span class="label">Stack</span>
+        <ul>
+          @for (t of stack; track t) {
+            <li>{{ t }}</li>
+          }
+        </ul>
+      </aside>
+    </section>
+
+    <!-- §2 Pipeline -->
+    <section class="doc-sec">
+      <div class="doc-sec__num">§2<span>Pipeline</span></div>
+      <div class="doc-sec__body">
+        <h2>How it works</h2>
+        <ol class="pipeline">
+          @for (p of pipeline; track p.step) {
+            <li class="pipeline__step">
+              <div class="pipeline__name">{{ p.step }}</div>
+              <div class="pipeline__detail mono">{{ p.detail }}</div>
+            </li>
+          }
+        </ol>
       </div>
-    </div>
-  </section>
+      <aside class="aside">
+        <span class="label">Note</span>
+        <p>
+          The same embedding model runs on both sides. That's a hard requirement, since matching vector
+          <em>dimensions</em> does not mean matching vector <em>spaces</em>.
+        </p>
+      </aside>
+    </section>
+
+    <!-- §3 Decisions -->
+    <section class="doc-sec">
+      <div class="doc-sec__num">§3<span>Decisions</span></div>
+      <div class="doc-sec__body">
+        <h2>Decisions worth defending</h2>
+        <div class="table-wrap">
+          <table class="ruled ruled--stack">
+            <thead>
+              <tr><th class="label">Decision</th><th class="label">Chose</th><th class="label">Why</th></tr>
+            </thead>
+            <tbody>
+              @for (d of decisions; track d.topic) {
+                <tr>
+                  <td class="ruled__key">{{ d.topic }}</td>
+                  <td class="ruled__mono">{{ d.choice }}</td>
+                  <td>{{ d.why }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- §4 Results & roadmap -->
+    <section class="doc-sec doc-sec--last">
+      <div class="doc-sec__num">§4<span>Roadmap</span></div>
+      <div class="doc-sec__body">
+        <h2>Results &amp; roadmap</h2>
+        <p class="text-muted">
+          Eval-driven: each production improvement lands on its own branch with a before/after accuracy
+          number, so deltas stay apples-to-apples.
+        </p>
+        <div class="table-wrap roadmap">
+          <table class="ruled ruled--stack">
+            <thead>
+              <tr><th class="label">Phase</th><th class="label">Scope</th><th class="label">Status</th></tr>
+            </thead>
+            <tbody>
+              @for (r of roadmap; track r.phase) {
+                <tr [class.roadmap__todo]="!r.done">
+                  <td class="ruled__mono">{{ r.phase }}</td>
+                  <td>{{ r.label }}</td>
+                  <td class="ruled__mono roadmap__status">{{ r.done ? 'Done' : 'Planned' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="cs__links">
+          <a class="link" [href]="repo" target="_blank" rel="noopener noreferrer">Full write-up in the README →</a>
+          <a class="link" routerLink="/">Back to home</a>
+        </div>
+      </div>
+      <aside class="aside">
+        <span class="label">Baseline</span>
+        <p>15 of 16 golden-set cases pass (94%). The one miss is a retrieval-side gap that Phase A targets.</p>
+      </aside>
+    </section>
+  </div>
 </article>

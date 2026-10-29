@@ -30,8 +30,11 @@
               }
             ],
             "styles": [
-              "@fontsource-variable/inter/wght.css",
-              "@fontsource-variable/jetbrains-mono/wght.css",
+              "@fontsource-variable/newsreader/opsz.css",
+              "@fontsource-variable/newsreader/opsz-italic.css",
+              "@fontsource-variable/ibm-plex-sans/wght.css",
+              "@fontsource/ibm-plex-mono/400.css",
+              "@fontsource/ibm-plex-mono/500.css",
               "src/styles.scss"
             ]
           },
